@@ -1,6 +1,4 @@
 
-
-
 (setq package-install-upgrade-built-in t)
 ;; Initialize Melpa
 (require 'package)
@@ -12,10 +10,10 @@
 
 
 ;;Dark Theme
-(use-package ample-theme
+(use-package dracula-theme
   :ensure t
   :config
-  (load-theme 'ample t))
+  (load-theme 'dracula t))
 
 
 ;;Basic adjustment
@@ -35,7 +33,7 @@
 (use-package projectile
   :ensure t
   :config
- (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
+ (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
  (projectile-mode +1))
 
 (use-package helm-projectile
@@ -78,6 +76,11 @@
 
 ;; C/C++
 
+(use-package company
+  :ensure t
+  :init
+  (add-hook 'after-init-hook 'global-company-mode))
+
 (use-package irony
   :ensure t
   :config
@@ -87,7 +90,7 @@
 
   ;; Install the Irony server if not already installed
   (defun my-irony-setup ()
-    (unless (irony--server-binary-valid-p)
+    (unless (irony-server-binary-valid-p)
       (call-interactively #'irony-install-server)))
 
   (add-hook 'irony-mode-hook 'my-irony-setup))
@@ -105,18 +108,13 @@
   (add-hook 'irony-mode-hook 'irony-eldoc))
 
 
-
-
-
-
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(treemacs-projectile treemacs irony-eldoc projectile use-package magit lsp-mode helm-projectile helm-dash flycheck dashboard company-irony auto-complete ample-theme)))
+   '(dracula-theme abyss-theme brutalist-theme doom-theme treemacs-projectile treemacs irony-eldoc projectile use-package magit lsp-mode helm-projectile helm-dash flycheck dashboard company-irony auto-complete ample-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
