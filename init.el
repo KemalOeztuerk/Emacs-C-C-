@@ -59,6 +59,23 @@
 (setq dashboard-show-shortcuts t)
 (setq dashboard-set-heading-icons t)))
 
+
+;;Treemacs
+
+(use-package treemacs
+  :ensure t
+  :bind
+  (:map global-map
+	([f8] . treemacs)
+	("C-<f8>" . treemacs-select-window))
+  :config
+  (setq treemacs-is-never-other-window t))
+
+
+(use-package treemacs-projectile
+  :after treemacs projectile
+  :ensure t)
+
 ;; C/C++
 
 (use-package irony
@@ -99,7 +116,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(irony-eldoc projectile use-package magit lsp-mode helm-projectile helm-dash flycheck dashboard company-irony auto-complete ample-theme)))
+   '(treemacs-projectile treemacs irony-eldoc projectile use-package magit lsp-mode helm-projectile helm-dash flycheck dashboard company-irony auto-complete ample-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
