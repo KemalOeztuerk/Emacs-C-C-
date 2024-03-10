@@ -12,12 +12,15 @@
 
 
 ;;Dark Theme
-;;(package-install 'ample-theme)
-(load-theme 'ample t)
+(use-package ample-theme
+  :ensure t
+  :config
+  (load-theme 'ample t))
+
 
 ;;Basic adjustment
 (setq inhibit-splash-screen t)
-(add-hook 'window-setup-hook 'toggle-frame--maximized)
+(add-hook 'window-setup-hook 'toggle-frame-maximized)
 (scroll-bar-mode -1)
 (electric-pair-mode 1)
 (global-display-line-numbers-mode t)
@@ -39,20 +42,24 @@
   :ensure t
   :config(helm-projectile-on))
 
-;;(package-install 'dashboard)
 (use-package dashboard
  :ensure t
  :config
- (dashboard-setup-startup-hook))
+ (dashboard-setup-startup-hook)
+
+ (setq dashboard-items '(
+			 (recents . 5)
+			 (projects . 5)
+			 (agenda . 5)
+			 (registers . 5)
+			 (bookmarks . 5))
+
+(setq dashboard-center-content t)
+(setq dashboard-set-file-icons t)
+(setq dashboard-show-shortcuts t)
+(setq dashboard-set-heading-icons t)))
 
 ;; C/C++
-
-(use-package irony
-  :ensure t
-  :config
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'c-mode-hook 'irony-mode)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
 (use-package irony
   :ensure t
